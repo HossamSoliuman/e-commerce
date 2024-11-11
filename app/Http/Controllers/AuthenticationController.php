@@ -71,11 +71,11 @@ class AuthenticationController extends Controller
             $user->password = Hash::make($validated['password']);
         }
 
-        $user->save();
+        $user->fill($validated)->save();
 
         return $this->apiResponse(
             [
-                'user' => UserResource::make($user),
+                'user' => $user,
             ],
             'User updated successfully'
         );
