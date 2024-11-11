@@ -52,8 +52,12 @@
             <div class="list-group list-group-flush mx-3 mt-4">
 
                 <a href="{{ route('categories.index') }}" class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-category fa-fw me-3"></i><span>Categories</span>
+                    <i class="fas fa-th-list fa-fw me-3"></i><span>Categories</span>
                 </a>
+                <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-box-open fa-fw me-3"></i><span>Products</span>
+                </a>
+
                 <a href="#" class="list-group-item list-group-item-action py-2 ripple">
                     <form action="{{ route('logout') }}" method="post"> @csrf
                         <button type="submit" class="list-group-item list-group-item-action py-2 ripple text-danger">
