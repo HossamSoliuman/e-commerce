@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TempFileController;
 use Illuminate\Http\Client\Request;
@@ -22,7 +23,7 @@ Auth::routes([
 ]);
 
 Route::post('temp/store', [TempFileController::class, 'store'])->name('upload');
-Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-});
+Route::middleware('auth')->group(function () {});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::apiResource('categories', CategoryController::class);
