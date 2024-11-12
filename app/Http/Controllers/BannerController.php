@@ -6,7 +6,7 @@ use App\Models\Banner;
 use App\Http\Requests\StoreBannerRequest;
 use Hossam\Licht\Controllers\LichtBaseController;
 
-class BannerController extends LichtBaseController
+class BannerController extends controller
 {
     public function index()
     {
@@ -29,5 +29,10 @@ class BannerController extends LichtBaseController
         $this->deleteFile($banner->image);
         $banner->delete();
         return to_route('banners.index');
+    }
+
+    public function apiList()
+    {
+        return $this->apiResponse(Banner::all());
     }
 }

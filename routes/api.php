@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+Route::get('banners', [BannerController::class, 'apiList']);
 Route::get('categories', [CategoryController::class, 'apiList']);
 Route::get('products', [ProductController::class, 'apiList']);
 Route::get('products/{product}', [ProductController::class, 'apiShow']);
