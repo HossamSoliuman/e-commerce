@@ -57,6 +57,10 @@
                 <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-box-open fa-fw me-3"></i><span>Products</span>
                 </a>
+                <a href="{{ route('banners.index') }}" class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-image fa-fw me-3"></i><span>Banners</span>
+                </a>
+
 
                 <a href="#" class="list-group-item list-group-item-action py-2 ripple">
                     <form action="{{ route('logout') }}" method="post"> @csrf
