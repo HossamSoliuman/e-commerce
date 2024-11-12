@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductImage;
 use App\Http\Requests\StoreProductImageRequest;
-use App\Http\Requests\UpdateProductImageRequest;
-use App\Http\Resources\ProductImageResource;
-use Hossam\Licht\Controllers\LichtBaseController;
 
-class ProductImageController extends LichtBaseController
+class ProductImageController extends controller
 {
 
     public function store(StoreProductImageRequest $request)

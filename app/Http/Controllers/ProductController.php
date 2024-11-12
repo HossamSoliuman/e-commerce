@@ -7,7 +7,6 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
-use Hossam\Licht\Controllers\LichtBaseController;
 
 class ProductController extends controller
 {
