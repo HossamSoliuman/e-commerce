@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container mt-5">
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center ">
             <div class="col-md-11">
                 <h1>Products</h1>
                 <button type="button" class=" mb-3 btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
@@ -124,7 +124,7 @@
                         @foreach ($products as $product)
                             <tr data-product-id="{{ $product->id }}">
                                 <td class=" product-name">{{ $product->name }}</td>
-                                <td class=" product-description">{{ $product->description }}</td>
+                                <td class=" product-description">{{ Str::limit($product->description, 50, '...') }}</td>
                                 <td class=" product-price">{{ $product->price }}</td>
                                 <td class=" product-category_id">{{ $product->category->name }}</td>
                                 <td class="d-flex">
@@ -162,19 +162,25 @@
                 $('#editModal input[name="description"]').val(ProductDescription);
                 var ProductPrice = $(this).closest("tr").find(".product-price").text();
                 $('#editModal input[name="price"]').val(ProductPrice);
-                var ProductCover = $(this).closest("tr").find(".product-cover").text();
-                $('#editModal input[name="cover"]').val(ProductCover);
 
-                var ProductCategory_id = $(this).closest("tr").find(".product-category_id").data(
-                    'category-id');
-                $('#editModal select[name="category_id"]').val(ProductCategory_id);
+                var ProductCategory = $(this).closest("tr").find(".product-category_id").text().trim();
+                $('#editModal select[name="category_id"] option').filter(function() {
+                    return $(this).text().trim() === ProductCategory;
+                }).prop('selected', true);
 
                 var ProductId = $(this).closest('tr').data('product-id');
                 $('#editForm').attr('action', '/products/' + ProductId);
                 $('#editModal').modal('show');
             });
+
             $('#saveChangesBtn').on('click', function() {
                 $('#editForm').submit();
+                $('#editModal').modal('hide');
+            });
+
+            $('#editModal').on('hidden.bs.modal', function() {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
             });
         });
     </script>
