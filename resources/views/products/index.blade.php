@@ -73,8 +73,7 @@
                                     @csrf
                                     @method('PUT')@csrf
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Product name"
-                                            required>
+                                        <textarea type="text" name="name" class="form-control" placeholder="Product name" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="description" class="form-control"
