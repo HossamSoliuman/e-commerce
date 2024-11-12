@@ -9,7 +9,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use Hossam\Licht\Controllers\LichtBaseController;
 
-class ProductController extends LichtBaseController
+class ProductController extends controller
 {
     public function index()
     {
@@ -48,5 +48,17 @@ class ProductController extends LichtBaseController
         $this->deleteFile($product->cover);
         $product->delete();
         return to_route('products.index');
+    }
+
+    public function apiList()
+    {
+        $products = Product::with('category')->get();
+        return $this->apiResponse(ProductResource::collection($products));
+    }
+
+    public function apiShow(Product $product)
+    {
+        $product->load('category', 'productImages');
+        return $this->apiResponse(ProductResource::make($product));
     }
 }
