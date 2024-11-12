@@ -157,7 +157,7 @@
                 var ProductName = $(this).closest("tr").find(".product-name").text();
                 $('#editModal input[name="name"]').val(ProductName);
                 var ProductDescription = $(this).closest("tr").find(".product-description").text();
-                $('#editModal input[name="description"]').val(ProductDescription);
+                $('#editModal textarea[name="description"]').val(ProductDescription);
                 var ProductPrice = $(this).closest("tr").find(".product-price").text();
                 $('#editModal input[name="price"]').val(ProductPrice);
 
