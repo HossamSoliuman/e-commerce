@@ -32,3 +32,4 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('categories', [CategoryController::class, 'apiList']);
 Route::get('products', [ProductController::class, 'apiList']);
 Route::get('products/{product}', [ProductController::class, 'apiShow']);
+Route::get('categories/{category}', [CategoryController::class, 'apiShow']);

@@ -45,4 +45,10 @@ class CategoryController extends controller
         $categories = Category::all();
         return $this->apiResponse($categories);
     }
+
+    public function apiShow(Category $category)
+    {
+        $category->load('products');
+        return $this->apiResponse(CategoryResource::make($category));
+    }
 }
