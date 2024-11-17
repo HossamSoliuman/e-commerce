@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ProductImage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductImageResource extends JsonResource
@@ -15,7 +16,7 @@ class ProductImageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'img' => $this->img,
+            'img' => filter_var($this->img, FILTER_VALIDATE_URL) ? $this->img : url($this->img),
         ];
     }
 }

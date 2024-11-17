@@ -9,23 +9,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
-    const PathToStoredImages='product/images/covers';
-    protected $fillable=[
-			'name',
-			'description',
-			'price',
-			'cover',
-			'category_id',
-    ];
+	use HasFactory;
+	const PathToStoredImages = 'product/images/covers';
+	protected $fillable = [
+		'name',
+		'description',
+		'price',
+		'cover',
+		'category_id',
+	];
 
 
 
-	public function category(){
+	public function category()
+	{
 		return $this->belongsTo(Category::class);
 	}
 
-	public function productImages(){
+	public function productImages()
+	{
 		return $this->hasMany(ProductImage::class);
 	}
 }

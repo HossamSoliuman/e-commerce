@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,7 +21,7 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
-            'cover' => $this->cover,
+            'cover' => filter_var($this->cover, FILTER_VALIDATE_URL) ? $this->cover : url($this->cover),
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'images' => ProductImageResource::collection($this->whenLoaded('productImages')),
             'created_at' => $this->created_at,
