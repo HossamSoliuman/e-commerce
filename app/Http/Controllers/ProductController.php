@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 
@@ -51,8 +52,8 @@ class ProductController extends controller
 
     public function apiList()
     {
-        $products = Product::with('category')->get();
-        return $this->apiResponse(ProductResource::collection($products));
+        $categories = Category::with('products')->get();
+        return $this->apiResponse(CategoryResource::collection($categories));
     }
 
     public function apiShow(Product $product)

@@ -128,18 +128,18 @@
                                 <td class="d-flex">
                                     <button type="button" class="btn btn-warning btn-edit" data-toggle="modal"
                                         data-target="#editModal">
-                                        <i class="fas fa-edit"></i> Edit
+                                        <i class="fas fa-edit"></i> 
                                     </button>
                                     <a href="{{ route('products.show', ['product' => $product->id]) }}"
                                         class="btn btn-info mx-2">
-                                        <i class="fas fa-eye"></i> Show
+                                        <i class="fas fa-eye"></i> 
                                     </a>
                                     <form action="{{ route('products.destroy', ['product' => $product->id]) }}"
                                         method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash-alt"></i> Delete
+                                            <i class="fas fa-trash-alt"></i> 
                                         </button>
                                     </form>
                                 </td>
