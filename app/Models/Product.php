@@ -20,6 +20,14 @@ class Product extends Model
 		'offer_content',
 		'category_id'
 	];
+	public function getPriceAfterOfferAttribute()
+	{
+		if ($this->offer_enabled) {
+			$discount = $this->price * ($this->offer_content / 100);
+			return $this->price - $discount;
+		}
+		return $this->price;
+	}
 
 
 

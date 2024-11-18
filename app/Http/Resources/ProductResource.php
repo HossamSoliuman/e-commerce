@@ -23,6 +23,7 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'offer_enabled' => $this->offer_enabled,
             'offer_content' => $this->offer_content,
+            'Price_after_offer' => $this->Price_after_offer,
             'cover' => filter_var($this->cover, FILTER_VALIDATE_URL) ? $this->cover : url($this->cover),
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'images' => ProductImageResource::collection($this->whenLoaded('productImages')),

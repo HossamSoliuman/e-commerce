@@ -1,4 +1,4 @@
-@extends('layouts.admin') 
+@extends('layouts.admin')
 @section('content')
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -23,7 +23,8 @@
                         </div>
                         <div class="mb-4 text-center">
                             <h5 class="mb-2"><strong>Cover Image:</strong></h5>
-                            <img src="{{ asset($product->cover) }}" alt="{{ $product->name }}" class="img-fluid rounded shadow-sm" style="max-height: 300px;">
+                            <img src="{{ asset($product->cover) }}" alt="{{ $product->name }}"
+                                class="img-fluid rounded shadow-sm" style="max-height: 300px;">
                         </div>
                         <hr>
                         <div class="row mb-3">
@@ -54,7 +55,8 @@
                             @foreach ($product->productImages as $img)
                                 <div class="col-md-3 mb-4">
                                     <div class="card shadow-sm">
-                                        <img src="{{ asset($img->img) }}" alt="{{ $product->name }}" class="img-fluid rounded-top">
+                                        <img src="{{ asset($img->img) }}" alt="{{ $product->name }}"
+                                            class="img-fluid rounded-top">
                                         <div class="card-body text-center">
                                             <form action="{{ route('product-images.destroy', $img->id) }}" method="POST">
                                                 @csrf
@@ -68,7 +70,8 @@
                                 </div>
                             @endforeach
                         </div>
-                        <form action="{{ route('product-images.store') }}" method="POST" enctype="multipart/form-data" class="mt-4">
+                        <form action="{{ route('product-images.store') }}" method="POST" enctype="multipart/form-data"
+                            class="mt-4">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <div class="form-group">
@@ -98,12 +101,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="editForm" action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+                    <form id="editForm" action="{{ route('products.update', $product->id) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" value="{{ $product->name }}" required>
+                            <input type="text" name="name" class="form-control" value="{{ $product->name }}"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -111,7 +116,8 @@
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="text" name="price" class="form-control" value="{{ $product->price }}" required>
+                            <input type="text" name="price" class="form-control" value="{{ $product->price }}"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="cover">Cover Image</label>
@@ -122,7 +128,8 @@
                             <select name="category_id" class="form-control" required>
                                 <option value="">Select a Category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}"
+                                        {{ $product->category_id == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
@@ -136,13 +143,15 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="offer_content">Offer Content</label>
-                            <textarea name="offer_content" class="form-control">{{ $product->offer_content }}</textarea>
+                            <label for="offer_content">Offer Amount</label>
+                            <input name="offer_content" type="number"
+                                class="form-control" value="{{  $product->offer_content  }}">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="$('#editForm').submit()">Save Changes</button>
+                    <button type="button" class="btn btn-primary" onclick="$('#editForm').submit()">Save
+                        Changes</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
