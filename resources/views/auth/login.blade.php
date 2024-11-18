@@ -9,9 +9,9 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
-                            <div class="mb-3 text-center">
+                            {{-- <div class="mb-3 text-center">
                                 <img src="logo-white.png" alt="Logo" style="max-width: 200px;">
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">{{ __('Email Address') }}</label>

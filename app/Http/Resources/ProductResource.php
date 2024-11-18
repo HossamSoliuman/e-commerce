@@ -21,6 +21,8 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
+            'offer_enabled' => $this->offer_enabled,
+            'offer_content' => $this->offer_content,
             'cover' => filter_var($this->cover, FILTER_VALIDATE_URL) ? $this->cover : url($this->cover),
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'images' => ProductImageResource::collection($this->whenLoaded('productImages')),

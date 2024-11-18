@@ -28,8 +28,9 @@ class ProductController extends controller
 
     public function show(Product $product)
     {
+        $categories = Category::all();
         $product->load('productImages');
-        return view('products.show', compact('product'));
+        return view('products.show', compact('product', 'categories'));
     }
 
     public function update(UpdateProductRequest $request, Product $product)

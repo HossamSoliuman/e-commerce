@@ -24,11 +24,13 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-			'name' => ['string', 'max:255', 'nullable'],
-			'description' => ['string', 'nullable'],
-			'price' => ['integer', 'nullable'],
-			'cover' => ['file', 'image', 'mimes:jpeg,png,jpg,gif', 'nullable'],
-			'category_id' => ['integer', 'exists:categories,id', 'nullable'],
+            'name' => ['string', 'max:255', 'nullable'],
+            'description' => ['string', 'nullable'],
+            'price' => ['integer', 'nullable'],
+            'cover' => ['file', 'image', 'mimes:jpeg,png,jpg,gif', 'nullable'],
+            'category_id' => ['integer', 'exists:categories,id', 'nullable'],
+            'offer_content' => ['string', 'nullable'],
+            'offer_enabled' => ['boolean', 'nullable'],
         ];
     }
 }

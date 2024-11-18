@@ -16,7 +16,9 @@ class Product extends Model
 		'description',
 		'price',
 		'cover',
-		'category_id',
+		'offer_enabled',
+		'offer_content',
+		'category_id'
 	];
 
 
