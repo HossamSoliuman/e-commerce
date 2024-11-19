@@ -4,61 +4,49 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <h1 class="text-center mb-4">Product Details</h1>
-                <div class="card">
-                    <div class="card-header text-center bg-primary text-white">
+                <div class="card shadow-lg">
+                    <div class="card-header text-center bg-dark text-white">
                         <h3>{{ $product->name }}</h3>
                     </div>
                     <div class="card-body">
-                        <div class="mb-3">
-                            <h5 class="mb-2"><strong>Description:</strong></h5>
-                            <p>{{ $product->description }}</p>
-                        </div>
-                        <div class="mb-3">
-                            <h5 class="mb-2"><strong>Price:</strong></h5>
-                            <p>${{ number_format($product->price, 2) }}</p>
-                        </div>
-                        <div class="mb-3">
-                            <h5 class="mb-2"><strong>Category:</strong></h5>
-                            <p>{{ $product->category->name }}</p>
-                        </div>
-                        <div class="mb-3">
-                            <h5 class="mb-2"><strong>Stock Status:</strong></h5>
-                            <p>{{ $product->stock_status ? 'In Stock' : 'Out of Stock' }}</p>
-                        </div>
-
-                        <div class="mb-4 text-center">
-                            <h5 class="mb-2"><strong>Cover Image:</strong></h5>
-                            <img src="{{ asset($product->cover) }}" alt="{{ $product->name }}"
-                                class="img-fluid rounded shadow-sm" style="max-height: 300px;">
+                        <div class="row mb-4">
+                            <div class="col-md-4 text-center">
+                                <h5 class="mb-2"><strong>Cover Image:</strong></h5>
+                                <img src="{{ asset($product->cover) }}" alt="{{ $product->name }}"
+                                    class="img-fluid rounded shadow-sm" style="max-height: 250px;">
+                            </div>
+                            <div class="col-md-8">
+                                <h5 class="mb-3"><strong>Description:</strong></h5>
+                                <p>{{ $product->description }}</p>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <h5><strong>Price:</strong></h5>
+                                        <p>${{ number_format($product->price, 2) }}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h5><strong>Category:</strong></h5>
+                                        <p>{{ $product->category->name }}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h5><strong>Stock Status:</strong></h5>
+                                        <p>{{ $product->stock_status ? 'In Stock' : 'Out of Stock' }}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h5><strong>Offer:</strong></h5>
+                                        <p>{{ $product->offer_enabled ? 'Yes' : 'No' }}
+                                            @if ($product->offer_enabled)
+                                                ({{ $product->offer_content }}% off)
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <h5><strong>Offer Enabled:</strong></h5>
-                                <p>{{ $product->offer_enabled ? 'Yes' : 'No' }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <h5><strong>Offer Content:</strong></h5>
-                                <p>{{ $product->offer_content }}</p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#editModal">
-                                <i class="fas fa-edit"></i> Edit Product
-                            </button>
-                            <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-trash-alt"></i> Delete Product
-                                </button>
-                            </form>
-                        </div>
-                        <hr>
-                        <h5><strong>Product Images:</strong></h5>
+                        <h5 class="mb-3"><strong>Product Images:</strong></h5>
                         <div class="row">
                             @foreach ($product->productImages as $img)
-                                <div class="col-md-3 mb-4">
+                                <div class="col-md-3 mb-3">
                                     <div class="card shadow-sm">
                                         <img src="{{ asset($img->img) }}" alt="{{ $product->name }}"
                                             class="img-fluid rounded-top">
@@ -79,14 +67,30 @@
                             class="mt-4">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <div class="form-group">
-                                <label for="img">Upload Product Image</label>
-                                <input type="file" class="form-control" name="img" required accept="image/*">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="img" required accept="image/*">
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-upload"></i> Upload Image
+                                    </button>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-upload"></i> Upload Image
-                            </button>
                         </form>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#editModal">
+                                <i class="fas fa-edit"></i> Edit Product
+                            </button>
+                            <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i> Delete Product
+                                </button>
+                            </form>
+                        </div>
                         <a href="{{ route('products.index') }}" class="btn btn-secondary mt-3">
                             <i class="fas fa-arrow-left"></i> Back to Products
                         </a>
@@ -94,6 +98,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
         aria-labelledby="editModalLabel" aria-hidden="true">

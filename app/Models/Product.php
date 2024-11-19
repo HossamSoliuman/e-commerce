@@ -21,6 +21,11 @@ class Product extends Model
 		'offer_content',
 		'category_id'
 	];
+	protected $casts = [
+		'price' => 'double',
+	];
+
+
 	public function getPriceAfterOfferAttribute()
 	{
 		if ($this->offer_enabled) {
