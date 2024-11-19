@@ -16,6 +16,7 @@ class Product extends Model
 		'description',
 		'price',
 		'cover',
+		'stock_status',
 		'offer_enabled',
 		'offer_content',
 		'category_id'

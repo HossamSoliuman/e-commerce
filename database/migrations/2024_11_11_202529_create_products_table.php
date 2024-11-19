@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->integer('price');
+            $table->double('price');
             $table->string('cover');
+            $table->boolean('stock_status');
             $table->boolean('offer_enabled')->default(0);
             $table->string('offer_content');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();;

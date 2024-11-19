@@ -21,6 +21,11 @@
                             <h5 class="mb-2"><strong>Category:</strong></h5>
                             <p>{{ $product->category->name }}</p>
                         </div>
+                        <div class="mb-3">
+                            <h5 class="mb-2"><strong>Stock Status:</strong></h5>
+                            <p>{{ $product->stock_status ? 'In Stock' : 'Out of Stock' }}</p>
+                        </div>
+
                         <div class="mb-4 text-center">
                             <h5 class="mb-2"><strong>Cover Image:</strong></h5>
                             <img src="{{ asset($product->cover) }}" alt="{{ $product->name }}"
@@ -120,6 +125,15 @@
                                 required>
                         </div>
                         <div class="form-group">
+                            <label for="stock_status">Stock Status</label>
+                            <select name="stock_status" class="form-control" required>
+                                <option value="1" {{ $product->stock_status ? 'selected' : '' }}>In Stock</option>
+                                <option value="0" {{ !$product->stock_status ? 'selected' : '' }}>Out of Stock
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="cover">Cover Image</label>
                             <input type="file" name="cover" class="form-control">
                         </div>
@@ -144,8 +158,8 @@
                         </div>
                         <div class="form-group">
                             <label for="offer_content">Offer Amount</label>
-                            <input name="offer_content" type="number"
-                                class="form-control" value="{{  $product->offer_content  }}">
+                            <input name="offer_content" type="number" class="form-control"
+                                value="{{ $product->offer_content }}">
                         </div>
                     </form>
                 </div>

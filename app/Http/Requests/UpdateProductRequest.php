@@ -31,6 +31,7 @@ class UpdateProductRequest extends FormRequest
             'category_id' => ['integer', 'exists:categories,id', 'nullable'],
             'offer_content' => ['string', 'nullable'],
             'offer_enabled' => ['boolean', 'nullable'],
+            'stock_status' => ['boolean', 'nullable'],
         ];
     }
 }
