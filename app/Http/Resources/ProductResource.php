@@ -8,14 +8,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
+        $images = [['img' => filter_var($this->cover, FILTER_VALIDATE_URL) ? $this->cover : url($this->cover)]];
+        $images = array_merge($images, ProductImageResource::collection($this->whenLoaded('productImages'))->toArray($request));
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -27,7 +24,7 @@ class ProductResource extends JsonResource
             'stock_status' => $this->stock_status,
             'cover' => filter_var($this->cover, FILTER_VALIDATE_URL) ? $this->cover : url($this->cover),
             'category' => CategoryResource::make($this->whenLoaded('category')),
-            'images' => ProductImageResource::collection($this->whenLoaded('productImages')),
+            'images' => $images,
             'created_at' => $this->created_at,
             'last_update' => $this->updated_at,
         ];
