@@ -30,7 +30,7 @@
                                         <textarea type="text" name="description" class="form-control" placeholder="Product description" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="price" class="form-control"
+                                        <input type="double" name="price" class="form-control"
                                             placeholder="Product price" required>
                                     </div>
                                     <div class="form-group">
