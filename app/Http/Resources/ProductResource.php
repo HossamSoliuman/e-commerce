@@ -11,7 +11,10 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         $images = [['img' => filter_var($this->cover, FILTER_VALIDATE_URL) ? $this->cover : url($this->cover)]];
-        $images = array_merge($images, ProductImageResource::collection($this->whenLoaded('productImages'))->toArray($request));
+
+        if ($this->relationLoaded('productImages')) {
+            $images = array_merge($images, ProductImageResource::collection($this->productImages)->toArray($request));
+        }
 
         return [
             'id' => $this->id,
