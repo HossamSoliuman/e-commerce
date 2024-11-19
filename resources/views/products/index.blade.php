@@ -43,9 +43,9 @@
                                             placeholder="Product price" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="file" name="cover" class="form-control"
-                                            placeholder="Product cover" required>
+                                        <input type="file" name="cover" class="form-control" accept="image/*" required>
                                     </div>
+                                    
 
                                     <div class="form-group">
                                         <label for="category">Category</label>
